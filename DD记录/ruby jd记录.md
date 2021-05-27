@@ -32,3 +32,19 @@ K8s、Docker
 + 熟悉 RESTful Service API 的设计与开发，并有实际经验；
 + 具备扎实的基础知识，对数据结构. 常用算法有理解并能应用；
 + 参与过开源项目。
+
+[Crypto](https://ruby-china.org/topics/41281)
+
+熟悉 Ruby，Ruby on Rails，有 Golang 经验更佳
+编写高效，优雅，可重用以及安全的代码
+熟悉 Postgresql，理解各种数据类型，索引构建及分析优化
+熟悉批量操作，增量操作及缓存等优化手段
+熟悉 Sidekiq，理解 retry 机制，idempotency 概念
+熟悉 RESTful 及 GraphQL
+熟悉 CI/CD 工具
+熟悉 Docker, Kubernates 容器技术
+理解 Zero downtime deploy
+有数字币交易所，钱包，支付系统研发经验优先
+有高并发，大型微服务项目经验优先
+有从 0 到 1 构建优化并演进项目经验优先
+参与高质量开源项目经验优先
