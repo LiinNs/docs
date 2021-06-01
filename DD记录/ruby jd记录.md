@@ -48,3 +48,17 @@ K8s、Docker
 有高并发，大型微服务项目经验优先
 有从 0 到 1 构建优化并演进项目经验优先
 参与高质量开源项目经验优先
+
+[全职远程】15K-20K/澳洲远程开发团队/招 Ruby 开发工程师](https://ruby-china.org/topics/41290)
+
+- 两年以上 Ruby on Rails 开发经验
+- 熟悉 GraphQL,RESTful ，并熟练开发 API
+- 熟悉 Linux 系统开发环境，掌握常用的工具和命令
+- 熟练使用 PostgreSQL，MySQL 等数据库
+- 熟练使用 Git 进行版本管理 (rebase, cherry-pick, squash)
+
+加分项
+- 熟练使用国外服务，包括 AWS，Heroku，Stripe 等
+- 熟悉 Docker，了解 Kubernetes，DevOps 等
+- 有个人技术博客，或者有大型网站的后端架构或性能优化实践经验
+- 参与开源项目
