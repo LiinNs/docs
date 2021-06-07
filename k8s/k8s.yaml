@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+  labels:
+    app.kubernates.io/name: mongo
+    app.kubernates.io/component: backend
+spec:
+  selector:
+    matchLabels:
