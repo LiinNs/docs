@@ -1,5 +1,9 @@
 # shell脚本样例学习
 
+`\` 换行符
+
+文件表达式：
+
 * -e filename 如果 filename存在，则为真
 * -d filename 如果 filename为目录，则为真
 * -f filename 如果 filename为常规文件，则为真
@@ -11,6 +15,14 @@
 * -h filename 如果文件是软链接，则为真
 * filename1 -nt filename2 如果 filename1比 filename2新，则为真。
 * filename1 -ot filename2 如果 filename1比 filename2旧，则为真。
+
+数量变量表达式
+
+* if  [ $a = $b ]                 如果string1等于string2，则为真，字符串允许使用赋值号做等号
+* if  [ $string1 !=  $string2 ]   如果string1不等于string2，则为真       
+* if  [ -n $string  ]             如果string 非空(非0），返回0(true)  
+* if  [ -z $string  ]             如果string 为空，则为真
+* if  [ $sting ]                  如果string 非空，返回0 (和-n类似)
 
 比较运算符：
 
@@ -75,6 +87,10 @@ shell特殊变量
 * $@：传递给脚本或函数的所有参数。被双引号(" ")包含时，与 $* 稍有不同
 * $?：上个命令的退出状态，或函数的返回值。
 * $$：当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。
+
+`read` 交互式从stdin读取输入
+`readonly` 只读变量
+`unset` 删除变量
 
 ~~~shell
 #!/bin/sh
@@ -152,7 +168,6 @@ JAVA_OPT="${JAVA_OPT} -XX:+AlwaysPreTouch"
 JAVA_OPT="${JAVA_OPT} -XX:MaxDirectMemorySize=15g"
 JAVA_OPT="${JAVA_OPT} -XX:-UseLargePages -XX:-UseBiasedLocking"
 JAVA_OPT="${JAVA_OPT} -Djava.ext.dirs=${JAVA_HOME}/jre/lib/ext:${BASE_DIR}/lib:${JAVA_HOME}/lib/ext"
-JAVA_OPT="${JAVA_OPT} -Drocketmq.client.logRoot=/Volumes/888/rocketmq/logs"
 #JAVA_OPT="${JAVA_OPT} -Xdebug -Xrunjdwp:transport=dt_socket,address=9555,server=y,suspend=n"
 JAVA_OPT="${JAVA_OPT} ${JAVA_OPT_EXT}"
 JAVA_OPT="${JAVA_OPT} -cp ${CLASSPATH}"
@@ -168,6 +183,59 @@ then
 else
         $JAVA ${JAVA_OPT} $@
 fi
+~~~
+
+~~~shell
+#!/bin/sh
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+case $1 in
+    broker)
+
+    pid=`ps ax | grep -i 'org.apache.rocketmq.broker.BrokerStartup' |grep java | grep -v grep | awk '{print $1}'`
+    if [ -z "$pid" ] ; then
+            echo "No mqbroker running."
+            exit -1;
+    fi
+
+    echo "The mqbroker(${pid}) is running..."
+
+    kill ${pid}
+
+    echo "Send shutdown request to mqbroker(${pid}) OK"
+    ;;
+    namesrv)
+
+    pid=`ps ax | grep -i 'org.apache.rocketmq.namesrv.NamesrvStartup' |grep java | grep -v grep | awk '{print $1}'`
+    if [ -z "$pid" ] ; then
+            echo "No mqnamesrv running."
+            exit -1;
+    fi
+
+    echo "The mqnamesrv(${pid}) is running..."
+
+    kill ${pid}
+
+    echo "Send shutdown request to mqnamesrv(${pid}) OK"
+    ;;
+    *)
+    echo "Useage: mqshutdown broker | namesrv"
+esac
+
 ~~~
 
 ## references
