@@ -41,7 +41,7 @@
 
 \`dirname $0\`返回当前路径的"."
 
-~~~shell
+~~~bash
 #!/bin/bash
 echo "\$*=" $*
 echo "\"\$*\"=" "$*"
@@ -69,7 +69,7 @@ do
 done
 ~~~
 
-~~~shell
+~~~bash
 #!/bnin/sh
 # 进入上层目录
 TESTDIR=$(dirname $0)/..
@@ -92,7 +92,7 @@ shell特殊变量
 `readonly` 只读变量
 `unset` 删除变量
 
-~~~shell
+~~~bash
 #!/bin/sh
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
@@ -185,7 +185,7 @@ else
 fi
 ~~~
 
-~~~shell
+~~~bash
 #!/bin/sh
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
