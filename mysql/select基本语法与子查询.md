@@ -53,3 +53,31 @@ PARTITION BY RANGE(id)(
 );
 
 PARTITIONS 4
+
+ORDER BY
+GROUP BY
+COUNT
+HAVING 对聚合后的结果进行过滤
+
+## WHERE 与 HAVING 有什么区别
+
+AND OR IN NOT
+
+SQL（像多数语言一样）在处理OR操作符前，优先处理AND操作符。
+
+~~~SQL
+SELECT prod_name, prod_price 
+FROM Products 
+WHERE vend_id = 'DLL01' OR vend_id = 'BRS01'  AND prod_price >= 10;
+~~~
+
+当SQL看到上述WHERE子句时，它理解为：由供应商BRS01制造的价格为10美元以上的所有产品，以及由供应商DLL01制造的所有产品，而不管其价格如何。换句话说，由于AND在求值过程中优先级更高，操作符被错误地组合了。
+
+IN操作符一般比一组OR操作符执行得更快。
+
+~~~SQL
+insert into t (a, b, c) select a, b, c from t_b;
+select * into t_member_copy from t_member;
+
+CREATE TABLE t_member_copy AS SELECT * FROM t_member;
+~~~
