@@ -244,3 +244,4 @@ esac
 [numactl manual](https://man7.org/linux/man-pages/man8/numactl.8.html)
 [鲲鹏通用](https://support.huaweicloud.com/tuningtip-kunpenggrf/kunpengtuning_12_0009.html)
 [Shell简介 - shell脚本变量](http://c.biancheng.net/cpp/view/2739.html)
+[脚本编写经验](https://mp.weixin.qq.com/s/22awzL9yNoEa8kSyUt0fog)
