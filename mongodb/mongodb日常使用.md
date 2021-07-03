@@ -14,12 +14,15 @@ db.createUser({
 
 # 验证密码
 db.auth('root', 'xxx')
+
 # 查看当前库下的用户
 show users
+
 # 删除用户
 db.dropUser('testadmin')  
+
 # 修改用户密码
-db.updateUser('admin', {pwd: '654321'})  
+db.updateUser('root', {pwd: '654321'})  
 
 # 使用bzeex
 use bzeex
