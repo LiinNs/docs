@@ -2,6 +2,8 @@
 
 ## 数据类型
 
+索引 https://mp.weixin.qq.com/s/QruFD8_v3ZzTcqdLjwMmOg
+
 json数据类型
 
 ## 函数索引
