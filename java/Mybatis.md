@@ -134,6 +134,16 @@ public class BaseEnumConverterFactory<T extends Enum<?> & BaseEnum> implements C
     }
 
 }
+
+@Configuration
+public class ApplicationConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverterFactory(new BaseEnumConverterFactory<>());
+    }
+}
+
 ```
 
 [1](https://feiyizhan.github.io/mybatis%20/2019/05/29/MyBatis-TypeHandler%E7%9A%84%E7%AC%94%E8%AE%B0.html)
