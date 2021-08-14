@@ -32,3 +32,67 @@ if ($request_method = 'OPTIONS') {
   return 204; 
 }
 ```
+
+```conf
+user  nginx;
+worker_processes  16;
+worker_rlimit_nofile 100000;
+
+error_log  /var/log/nginx/error.log;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  10240;
+    use epoll;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  /var/log/nginx/access.log  main;
+    access_log  off;
+
+    sendfile        on;
+    tcp_nopush     on;
+    keepalive_timeout  30;
+    reset_timedout_connection on;
+    tcp_nodelay on;
+    server_tokens off;
+
+    gzip  on;
+    gzip_http_version 1.1;
+    gzip_vary on;
+    gzip_comp_level 6;
+    gzip_proxied any;
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_buffers 16 8k;
+
+    charset utf-8;
+
+    upstream php1  {
+      server   unix:/dev/shm/.php1.socket;
+    }
+    upstream php2  {
+      server   unix:/dev/shm/.php2.socket;
+    }
+    upstream php3  {
+      server   unix:/dev/shm/.php3.socket;
+    }
+
+    ssl_certificate     /etc/pki/tls/certs/site.com.crt;
+    ssl_certificate_key /etc/pki/tls/certs/site.com.key;
+    ssl_ciphers         RC4-SHA:AES128-SHA:AES256-SHA:CAMELLIA128-SHA:HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+
+
+    limit_req_zone  $binary_remote_addr  zone=one:10m   rate=1r/s;
+    limit_req_zone  $uri  zone=two:10m   rate=200r/s;
+
+    include /etc/nginx/conf.d/*.conf;
+}
+```
