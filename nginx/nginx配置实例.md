@@ -96,3 +96,13 @@ http {
     include /etc/nginx/conf.d/*.conf;
 }
 ```
+
+## websocket 反向代理支持
+
+```nginx
+#websocket 需要加下这个
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+```
