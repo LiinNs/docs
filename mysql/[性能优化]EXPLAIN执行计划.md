@@ -26,3 +26,5 @@ id select_type table partitions type possible_keys key ken_len ref rows filtered
 MySQL can use indexes on columns more efficiently if they are declared as the same type and size. 
 
 Check whether the numbers are even close to the truth by comparing the rows product with the actual number of rows that the query returns. If the numbers are quite different, you might get better performance by using STRAIGHT_JOIN in your SELECT statement and trying to list the tables in a different order in the FROM clause.
+
+[索引](https://mp.weixin.qq.com/s/QruFD8_v3ZzTcqdLjwMmOg)
