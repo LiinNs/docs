@@ -1,28 +1,28 @@
-# shell脚本样例学习
+# shell 脚本样例学习
 
 `\` 换行符
 
 文件表达式：
 
-* -e filename 如果 filename存在，则为真
-* -d filename 如果 filename为目录，则为真
-* -f filename 如果 filename为常规文件，则为真
-* -L filename 如果 filename为符号链接，则为真
-* -r filename 如果 filename可读，则为真
-* -w filename 如果 filename可写，则为真
-* -x filename 如果 filename可执行，则为真
-* -s filename 如果文件长度不为0，则为真
+* -e filename 如果 filename 存在，则为真
+* -d filename 如果 filename 为目录，则为真
+* -f filename 如果 filename 为常规文件，则为真
+* -L filename 如果 filename 为符号链接，则为真
+* -r filename 如果 filename 可读，则为真
+* -w filename 如果 filename 可写，则为真
+* -x filename 如果 filename 可执行，则为真
+* -s filename 如果文件长度不为 0，则为真
 * -h filename 如果文件是软链接，则为真
-* filename1 -nt filename2 如果 filename1比 filename2新，则为真。
-* filename1 -ot filename2 如果 filename1比 filename2旧，则为真。
+* filename1 -nt filename2 如果 filename1 比 filename2 新，则为真。
+* filename1 -ot filename2 如果 filename1 比 filename2 旧，则为真。
 
 数量变量表达式
 
-* if  [ $a = $b ]                 如果string1等于string2，则为真，字符串允许使用赋值号做等号
-* if  [ $string1 !=  $string2 ]   如果string1不等于string2，则为真       
-* if  [ -n $string  ]             如果string 非空(非0），返回0(true)  
-* if  [ -z $string  ]             如果string 为空，则为真
-* if  [ $sting ]                  如果string 非空，返回0 (和-n类似)
+* if  [ $a = $b ]                 如果 string1 等于 string2，则为真，字符串允许使用赋值号做等号
+* if  [ $string1 !=  $string2 ]   如果 string1 不等于 string2，则为真       
+* if  [ -n $string  ]             如果 string 非空 (非 0），返回 0(true)  
+* if  [ -z $string  ]             如果 string 为空，则为真
+* if  [ $sting ]                  如果 string 非空，返回 0 (和-n 类似)
 
 比较运算符：
 
@@ -78,17 +78,17 @@ cd $TESTDIR
 echo `pwd`
 ~~~
 
-shell特殊变量
+shell 特殊变量
 
 * $0：当前脚本的文件名
 * $n：传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。
 * $#：传递给脚本或函数的参数个数。
 * $*：传递给脚本或函数的所有参数。
-* $@：传递给脚本或函数的所有参数。被双引号(" ")包含时，与 $* 稍有不同
+* $@：传递给脚本或函数的所有参数。被双引号 (" ") 包含时，与 $* 稍有不同
 * $?：上个命令的退出状态，或函数的返回值。
-* $$：当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。
+* $$：当前 Shell 进程 ID。对于 Shell 脚本，就是这些脚本所在的进程 ID。
 
-`read` 交互式从stdin读取输入
+`read` 交互式从 stdin 读取输入
 `readonly` 只读变量
 `unset` 删除变量
 
@@ -240,8 +240,8 @@ esac
 
 ## references
 
-[linux 下shell中if的“-e，-d，-f”是什么意思](https://blog.csdn.net/superbfly/article/details/49274889)
+[linux 下 shell 中 if 的 “-e，-d，-f” 是什么意思](https://blog.csdn.net/superbfly/article/details/49274889)
 [numactl manual](https://man7.org/linux/man-pages/man8/numactl.8.html)
 [鲲鹏通用](https://support.huaweicloud.com/tuningtip-kunpenggrf/kunpengtuning_12_0009.html)
-[Shell简介 - shell脚本变量](http://c.biancheng.net/cpp/view/2739.html)
+[Shell 简介 - shell 脚本变量](http://c.biancheng.net/cpp/view/2739.html)
 [脚本编写经验](https://mp.weixin.qq.com/s/22awzL9yNoEa8kSyUt0fog)
