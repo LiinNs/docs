@@ -4,7 +4,7 @@ https://dev.mysql.com/doc/refman/8.0/en/explain-output.html#explain-join-types
 
 可以分析 SELECT、DELETE、INSERT、REPLACE、UPDATE
 
-EXPLAIN语句会根据SELECT执行时的读取到表的顺序，产生一条关于表的信息
+EXPLAIN 语句会根据 SELECT 执行时的读取到表的顺序，产生一条关于表的信息
 
 id select_type table partitions type possible_keys key ken_len ref rows filtered extra
 

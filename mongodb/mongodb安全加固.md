@@ -27,7 +27,7 @@
 
 ## 访问权限控制
 
-MongoDB可以设置的权限字符串
+MongoDB 可以设置的权限字符串
 
 - 数据库用户角色：read、readWrite；
 - 数据库管理角色：dbAdmin、dbOwner、userAdmin;
@@ -39,16 +39,16 @@ MongoDB可以设置的权限字符串
 
 - Read：允许用户读取指定数据库
 - readWrite：允许用户读写指定数据库
-- dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile
-- userAdmin：允许用户向system.users集合写入，可以在指定数据库里创建、删除和管理用户
-- clusterAdmin：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。
-- readAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读权限
-- readWriteAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读写权限
-- userAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限
-- dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。
-- root：只在admin数据库中可用。超级账号，超级权限
+- dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问 system.profile
+- userAdmin：允许用户向 system.users 集合写入，可以在指定数据库里创建、删除和管理用户
+- clusterAdmin：只在 admin 数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。
+- readAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的读权限
+- readWriteAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的读写权限
+- userAdminAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的 userAdmin 权限
+- dbAdminAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的 dbAdmin 权限。
+- root：只在 admin 数据库中可用。超级账号，超级权限
 
-## 绑定IP 修改端口号
+## 绑定 IP 修改端口号
 
 ```conf
 net:

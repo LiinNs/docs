@@ -1,18 +1,18 @@
 ### Mysql 日志分析
 
-MySQL的二进制日志binlog可以说是MySQL最重要的日志，它记录了所有的DDL和DML语句（除了数据查询语句select），以事件形式记录，还包含语句所执行的消耗的时间，MySQL的二进制日志是事务安全型的。  
+MySQL 的二进制日志 binlog 可以说是 MySQL 最重要的日志，它记录了所有的 DDL 和 DML 语句（除了数据查询语句 select），以事件形式记录，还包含语句所执行的消耗的时间，MySQL 的二进制日志是事务安全型的。  
 
-mysqlbinlog常见的选项有以下几个：
+mysqlbinlog 常见的选项有以下几个：
 
 > start-datetime：从二进制日志中读取指定等于时间戳或者晚于本地服务器的时间
 > stop-datetime：从二进制日志中读取指定小于时间戳或者等于本地服务器的时间 取值和上述一样
-> start-position：从二进制日志中读取指定position 事件位置作为开始。
-> stop-position：从二进制日志中读取指定position 事件位置作为事件截至
-> -d：根据指定库读取binlog
+> start-position：从二进制日志中读取指定 position 事件位置作为开始。
+> stop-position：从二进制日志中读取指定 position 事件位置作为事件截至
+> -d：根据指定库读取 binlog
 > -r：重定向 `mysqlbinlog mysqlbin.000001 --start-position=365  -r pos.sql`
 
-每次服务器（数据库）重启，服务器会调用`mysql> flush logs;`，新创建一个binlog日志；  
-在mysqldump备份数据时加 -F 选项也会刷新binlog日志。  
+每次服务器（数据库）重启，服务器会调用`mysql> flush logs;`，新创建一个 binlog 日志；  
+在 mysqldump 备份数据时加 -F 选项也会刷新 binlog 日志。  
 
 
 #### 查看 mysql 启动相关配置 
@@ -25,19 +25,19 @@ mysql      827  1.2 15.8 4302000 962940 pts/0  Sl   Apr13 121:09 /www/server/mys
 root     35910  0.0  0.0   9104   876 pts/3    S+   09:13   0:00 grep --color=auto mysqld
 ~~~
 
-binlog日志与数据库文件在同目录中 `--datadir=/www/server/data`
+binlog 日志与数据库文件在同目录中 `--datadir=/www/server/data`
 
 #### binlog
 
 
 
-- 方式1 mysqlbinlog
+- 方式 1 mysqlbinlog
 
 `mysqlbinlog --base64-output=DECODE-ROWS -v mysql-bin.000144 |more`
 
-option `--base64-output=DECODE-ROWS`： 会显示出row模式带来的sql变更。
+option `--base64-output=DECODE-ROWS`： 会显示出 row 模式带来的 sql 变更。
 
-option `-v` ：显示statement模式带来的sql语句
+option `-v` ：显示 statement 模式带来的 sql 语句
 
 ~~~ log
 # at 4
@@ -63,27 +63,27 @@ SET @@SESSION.GTID_NEXT= 'ANONYMOUS'/*!*/;
 
 解释：
 server id 1: 数据库主机的服务号；
-end_log_pos: 125 sql结束时的pos节点
+end_log_pos: 125 sql 结束时的 pos 节点
 
-- 方式2 mysql
+- 方式 2 mysql
 
 ~~~ sql
--- 查看当前的binlog 模式 row,mixed,statement
+-- 查看当前的 binlog 模式 row,mixed,statement
 SHOW GLOBAL VARIABLES LIKE "%binlog_format%";
 
 -- 设置 binlog 的模式
 SET GLOBAL binlog_format = ¨STATEMENT¨;
 
--- 列出所有的binlog
+-- 列出所有的 binlog
 show [binary|master] logs;
 
--- 列出当前使用的binlog状态
+-- 列出当前使用的 binlog 状态
 show master status;
 
--- 创建新的binlog文件
+-- 创建新的 binlog 文件
 flush logs;
 
--- 查看binlog详细记录
+-- 查看 binlog 详细记录
 show binlog events [IN 'log_name'] [FROM pos] [LIMIT [offset,] row_count];
 ~~~
 
@@ -91,7 +91,7 @@ show binlog events [IN 'log_name'] [FROM pos] [LIMIT [offset,] row_count];
 #### redo log(innoDb log)
 
 ~~~ sql
--- 查看innodb log变量
+-- 查看 innodb log 变量
 show variables like "%innodb_log%”;
 
 +------------------------------------+----------+
@@ -109,19 +109,19 @@ show variables like "%innodb_log%”;
 | innodb_log_write_ahead_size        | 8192     |
 +------------------------------------+----------+
 
--- 查看innodb状态
+-- 查看 innodb 状态
 show engine innodb status;
 ~~~
 
-> innodb_log_buffer_size: redolog缓存区的大小，即16m
-> innodb_log_file_size: redolog文件的大小，即48m
+> innodb_log_buffer_size: redolog 缓存区的大小，即 16m
+> innodb_log_file_size: redolog 文件的大小，即 48m
 > innodb_log_files_in_group: 日志文件组中文件数量
 > innodb_log_group_home_dir: 日志文件组路径即 mysql/data
 
 
 #### undo log(innoDb log)
 
-#### 备份Mysql
+#### 备份 Mysql
 
 `bash> mysqldump -uroot -p -B -F -R -x --master-data=2 ops|gzip >/opt/backup/ops_$(date +%F).sql.gz`
 
@@ -131,7 +131,7 @@ show engine innodb status;
 > -F：刷新日志
 > -R：备份存储过程等
 > -x：锁表
-> --master-data：在备份语句里添加CHANGE MASTER语句以及binlog文件及位置点信息
+> --master-data：在备份语句里添加 CHANGE MASTER 语句以及 binlog 文件及位置点信息
 
 #### reference
 
@@ -140,5 +140,5 @@ show engine innodb status;
 3. www.junmajinlong.com
 4. https://www.cnblogs.com/jevo/p/3281139.html
 5. https://tjjsjwhj.me/2020/04/13/mysql%E4%B9%8Bredolog/
-6. https://www.cnblogs.com/kevingrace/p/5907254.html 从备份和binlog恢复mysql
+6. https://www.cnblogs.com/kevingrace/p/5907254.html 从备份和 binlog 恢复 mysql
 7. https://www.cxyxiaowu.com/10740.html SQL 和 NoSql 基础 非常好的博客 公众号

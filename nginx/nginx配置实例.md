@@ -71,6 +71,8 @@ http {
     gzip_proxied any;
     gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
     gzip_buffers 16 8k;
+    # 客户端上传文件大小限制
+    client_max_body_size 10m;
 
     charset utf-8;
 
@@ -94,6 +96,20 @@ http {
     limit_req_zone  $uri  zone=two:10m   rate=200r/s;
 
     include /etc/nginx/conf.d/*.conf;
+
+    # 获取真实 IP
+    set_real_ip_from 172.16.0.0/16;
+    real_ip_header X-Forwarded-For;
+    real_ip_recursive on;
+
+    location /goline/ {
+        # 请求白名单
+        allow 172.16.0.0/16;
+        deny all;
+        alias /opt/goline/web/;# 别名
+        auth_basic  "hello";
+        auth_basic_user_file /etc/nginx/basic_auth; # 鉴权
+    }
 }
 ```
 

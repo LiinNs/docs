@@ -24,21 +24,21 @@ db.dropUser('testadmin')
 # 修改用户密码
 db.updateUser('root', {pwd: '654321'})  
 
-# 使用bzeex
+# 使用 bzeex
 use bzeex
 
 # 查看所有集合
 show collections
 
-# 查看一个collection
+# 查看一个 collection
 db.collectionName.find()
 db.getCollection("collectionName").find()
 
-# 删除collection下所有数据
+# 删除 collection 下所有数据
 db.collection.remove({})
 ~~~
 
-重启mongodb as a Daemon
+重启 mongodb as a Daemon
 
 `mongod --fork --logpath /var/log/mongodb/mongod.log`
 `mongod -f /www/server/mongodb/config.conf`
